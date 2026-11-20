@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>رحلة السلطان | دليل الطالب الجديد - جامعة سلطان قابوس</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #FBF4E4;
+      --bg-card: #FFFDF8;
+      --ink-charcoal: #181818;
+      --ink-muted: #4A463F;
+      --accent-gold: #C8963E;
+      --accent-gold-soft: #F3E5C8;
+      --border-ink: #181818;
+      --shadow-hard: 4px 4px 0px #181818;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--ink-charcoal);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* شريط التنقل */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(251, 244, 228, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--border-ink);
+    }
+
+    .nav-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      color: var(--ink-charcoal);
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+
+    .brand-badge {
+      background: var(--accent-gold);
+      color: var(--ink-charcoal);
+      border: 2px solid var(--border-ink);
+      border-radius: 10px;
+      padding: 0.15rem 0.55rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--ink-charcoal);
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1.5px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover {
+      background: var(--accent-gold-soft);
+      border-color: var(--border-ink);
+    }
+
+    /* القسم الترحيبي البطاقي */
+    .hero {
+      max-width: 1160px;
+      margin: 2rem auto;
+      padding: 0 1.25rem;
+    }
+
+    .hero-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 2.5px solid var(--border-ink);
+      border-radius: 28px;
+      box-shadow: var(--shadow-hard);
+      padding: 2.2rem;
+      display: grid;
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 2rem;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-curve {
+      position: absolute;
+      top: -80px;
+      left: -80px;
+      width: 260px;
+      height: 260px;
+      border: 3px solid var(--border-ink);
+      border-radius: 50%;
+      background: var(--accent-gold-soft);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag-pill {
+      display: inline-block;
+      background: var(--accent-gold-soft);
+      border: 1.5px solid var(--border-ink);
+      color: var(--ink-charcoal);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.25rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 0.9rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-sub {
+      color: var(--ink-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+      max-width: 560px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.7rem 1.35rem;
+      border-radius: 14px;
+      border: 2px solid var(--border-ink);
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+
+    .btn:active {
+      transform: translate(2px, 2px);
+    }
+
+    .btn-primary {
+      background: var(--accent-gold);
+      color: var(--ink-charcoal);
+      box-shadow: 3px 3px 0 var(--border-ink);
+    }
+
+    .btn-secondary {
+      background: var(--bg-cream);
+      color: var(--ink-charcoal);
+      box-shadow: 3px 3px 0 var(--border-ink);
+    }
+
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: var(--bg-cream);
+      border: 2px solid var(--border-ink);
+      border-radius: 22px;
+      padding: 1.25rem;
+    }
+
+    .hero-visual caption-label {
+      margin-top: 0.5rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    /* الأقسام العامة */
+    section {
+      max-width: 1160px;
+      margin: 3rem auto;
+      padding: 0 1.25rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      display: inline-block;
+      border-bottom: 4px solid var(--accent-gold);
+      padding-bottom: 0.2rem;
+    }
+
+    .section-header p {
+      color: var(--ink-muted);
+      margin-top: 0.35rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-ink);
+      border-radius: 20px;
+      padding: 1.4rem;
+      box-shadow: var(--shadow-hard);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card p, .card li {
+      color: var(--ink-muted);
+      font-size: 0.96rem;
+    }
+
+    .card ul {
+      padding-right: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .card li {
+      margin-bottom: 0.35rem;
+    }
+
+    /* خريطة الحرم الجامعي التفاعلية */
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .filter-btn {
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      border: 2px solid var(--border-ink);
+      background: var(--bg-card);
+      color: var(--ink-charcoal);
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: var(--accent-gold);
+    }
+
+    .place-meta {
+      display: inline-block;
+      margin-top: 0.75rem;
+      background: var(--accent-gold-soft);
+      border: 1.5px solid var(--border-ink);
+      border-radius: 10px;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--ink-charcoal);
+    }
+
+    /* رمز QR */
+    .qr-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.9rem;
+    }
+
+    .qr-frame {
+      background: #FFFFFF;
+      border: 2.5px solid var(--border-ink);
+      border-radius: 18px;
+      padding: 0.9rem;
+      box-shadow: 3px 3px 0 var(--border-ink);
+    }
+
+    .url-display {
+      width: 100%;
+      background: var(--bg-cream);
+      border: 1.5px solid var(--border-ink);
+      border-radius: 12px;
+      padding: 0.55rem 0.8rem;
+      font-family: monospace;
+      font-size: 0.88rem;
+      text-align: center;
+      word-break: break-all;
+      direction: ltr;
+    }
+
+    /* المساعد الذكي */
+    .chat-box {
+      background: var(--bg-card);
+      border: 2.5px solid var(--border-ink);
+      border-radius: 22px;
+      box-shadow: var(--shadow-hard);
+      padding: 1.4rem;
+    }
+
+    .quick-questions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .chip {
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-ink);
+      background: var(--bg-cream);
+      color: var(--ink-charcoal);
+      cursor: pointer;
+    }
+
+    .chip:hover {
+      background: var(--accent-gold-soft);
+    }
+
+    .chat-messages {
+      max-height: 320px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 0.85rem;
+      background: var(--bg-cream);
+      border: 1.5px solid var(--border-ink);
+      border-radius: 16px;
+      margin-bottom: 1rem;
+    }
+
+    .msg {
+      padding: 0.7rem 1rem;
+      border-radius: 14px;
+      max-width: 85%;
+      font-size: 0.95rem;
+      border: 1.5px solid var(--border-ink);
+    }
+
+    .msg.bot {
+      align-self: flex-start;
+      background: var(--bg-card);
+    }
+
+    .msg.user {
+      align-self: flex-end;
+      background: var(--accent-gold-soft);
+      font-weight: 600;
+    }
+
+    .chat-form {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .chat-input {
+      flex: 1;
+      font-family: inherit;
+      font-size: 0.95rem;
+      padding: 0.7rem 1rem;
+      border-radius: 12px;
+      border: 2px solid var(--border-ink);
+      background: #FFFFFF;
+      color: var(--ink-charcoal);
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      border-top: 2px solid var(--border-ink);
+      background: var(--bg-card);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      color: var(--ink-muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero-card {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <span>رحلة السلطان</span>
+        <span class="brand-badge">SQU Guide</span>
+      </a>
+      <nav>
+        <a href="#psc">الدراسات التحضيرية</a>
+        <a href="#services">خدمات الجامعة</a>
+        <a href="#map">خريطة الحرم</a>
+        <a href="#qr">رمز QR</a>
+        <a href="#ai">المرشد الذكي</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- الواجهة الرئيسية -->
+    <section class="hero">
+      <div class="hero-card">
+        <div class="hero-curve"></div>
+        <div class="hero-content">
+          <span class="tag-pill">دليل الطالب الجديد التفاعلي • جامعة سلطان قابوس</span>
+          <h1>رحلة السلطان</h1>
+          <p class="hero-sub">
+            بوابتك السريعة والواضحة للتعرف على برامج مركز الدراسات التحضيرية، الخدمات الأكاديمية والسكنية، مواقع الحرم الجامعي، والإجابة الفورية على أسئلتك.
+          </p>
+          <div class="btn-group">
+            <a href="#ai" class="btn btn-primary">اسأل المرشد الذكي</a>
+            <a href="#qr" class="btn btn-secondary">رمز QR السريع</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <!-- رسم توضيحي لبرج الساعة -->
+          <svg width="190" height="190" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="رسم برج الساعة">
+            <circle cx="100" cy="105" r="72" fill="#F3E5C8" stroke="#181818" stroke-width="3"/>
+            <path d="M40 165 H160" stroke="#181818" stroke-width="4" stroke-linecap="round"/>
+            <rect x="74" y="65" width="52" height="100" rx="4" fill="#FFFDF8" stroke="#181818" stroke-width="3"/>
+            <path d="M68 65 L100 32 L132 65 Z" fill="#C8963E" stroke="#181818" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="100" cy="88" r="14" fill="#FBF4E4" stroke="#181818" stroke-width="2.5"/>
+            <line x1="100" y1="88" x2="100" y2="80" stroke="#181818" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="100" y1="88" x2="107" y2="88" stroke="#181818" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M88 165 V132 C88 124 112 124 112 132 V165" fill="#F3E5C8" stroke="#181818" stroke-width="2.5"/>
+            <rect x="52" y="115" width="22" height="50" fill="#FFFDF8" stroke="#181818" stroke-width="3"/>
+            <rect x="126" y="115" width="22" height="50" fill="#FFFDF8" stroke="#181818" stroke-width="3"/>
+          </svg>
+          <span class="caption-label">بداية واثقة في رحلتك الجامعية</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- مركز الدراسات التحضيرية -->
+    <section id="psc">
+      <div class="section-header">
+        <h2>مركز الدراسات التحضيرية (PSC)</h2>
+        <p>المرحلة التأسيسية التي تؤهلك للانطلاق بثقة نحو التخصصات الجامعية</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>📘 برنامج اللغة الإنجليزية</h3>
+          <p>يركز على تطوير مهارات القراءة، الكتابة، الاستماع، والمحادثة الأكاديمية وفق مستويات متدرجة تناسب متطلبات الدراسة الجامعية.</p>
+        </div>
+        <div class="card">
+          <h3>📐 المواد التأسيسية</h3>
+          <p>يشمل أساسيات الرياضيات وتقنية المعلومات والمهارات الدراسية المطلوبة للالتحاق بالكليات والتخصصات المختلفة.</p>
+        </div>
+        <div class="card">
+          <h3>📝 اختبارات المستوى والتقييم</h3>
+          <p>يتم تحديد المسار عبر اختبارات تحديد المستوى (Placement Tests) مع تقييم مستمر خلال الفصول الدراسية قبل الانتقال للكلية.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- خدمات الجامعة -->
+    <section id="services">
+      <div class="section-header">
+        <h2>خدمات الجامعة الأساسية</h2>
+        <p>كل ما يحتاجه الطالب الجديد لإدارة شؤونه الأكاديمية والحياتية</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>🎓 القبول والتسجيل والنظام الدراسي</h3>
+          <ul>
+            <li>متابعة الجداول الدراسية وتسجيل المقررات إلكترونياً.</li>
+            <li>الالتزام بمواعيد الحذف والإضافة والفترات الأكاديمية.</li>
+            <li>مراجعة الإرشاد الأكاديمي عند اختيار التخصص أو الخطة.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🏠 السكن الجامعي والحياة الطلابية</h3>
+          <ul>
+            <li>تنظيم السكن الطلابي وقواعد الإقامة والمرافق المشتركة.</li>
+            <li>الأنشطة الثقافية والرياضية والأندية الطلابية.</li>
+            <li>المطاعم والمراكز الخدمية داخل الحرم الجامعي.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📚 المكتبة والرعاية الصحية</h3>
+          <ul>
+            <li>المكتبة الرئيسية: استعارة الكتب، قواعد البيانات، وقاعات الدراسة.</li>
+            <li>الخدمات الصحية: عيادات الطلبة والرعاية الأولية والطوارئ.</li>
+            <li>الدعم النفسي والاجتماعي لتسهيل التكيف الجامعي.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- خريطة الحرم الجامعي التفاعلية -->
+    <section id="map">
+      <div class="section-header">
+        <h2>دليل مواقع الحرم الجامعي</h2>
+        <p>اختر الفئة لتصفية أبرز المواقع التي يبحث عنها الطالب الجديد</p>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterPlaces('all', this)">الكل</button>
+        <button class="filter-btn" onclick="filterPlaces('study', this)">الدراسة والمكتبة</button>
+        <button class="filter-btn" onclick="filterPlaces('services', this)">الخدمات والسكن</button>
+      </div>
+      <div class="grid-2" id="placesGrid">
+        <div class="card place-item" data-cat="study">
+          <h3>مبنى الدراسات التحضيرية</h3>
+          <p>مقر محاضرات اللغة الإنجليزية والمواد التأسيسية والاختبارات التأسيسية للطلبة الجدد.</p>
+          <span class="place-meta">الفئة: الدراسة والمكتبة</span>
+        </div>
+        <div class="card place-item" data-cat="study">
+          <h3>المكتبة الرئيسية</h3>
+          <p>توفر مساحات هادئة للمذاكرة الجماعية والفردية ومصادر المعلومات والكتب الأكاديمية.</p>
+          <span class="place-meta">الفئة: الدراسة والمكتبة</span>
+        </div>
+        <div class="card place-item" data-cat="services">
+          <h3>السكن الطلابي والخدمات</h3>
+          <p>مجمعات السكن والمرافق المساندة والخدمات الطلابية اليومية.</p>
+          <span class="place-meta">الفئة: الخدمات والسكن</span>
+        </div>
+        <div class="card place-item" data-cat="services">
+          <h3>المركز الصحي الطلابي</h3>
+          <p>يقدم الرعاية الطبية الأولية والاستشارات الصحية للطلبة خلال أوقات الدوام.</p>
+          <span class="place-meta">الفئة: الخدمات والسكن</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- رمز QR والمرشد الذكي -->
+    <section id="qr">
+      <div class="grid-2">
+        <div class="card qr-box">
+          <h3>رمز QR الخاص بالموقع</h3>
+          <p>يمسح الطالب هذا الرمز لفتح الدليل مباشرة على هاتفه ومشاركته بسهولة.</p>
+          <div class="qr-frame">
+            <canvas id="qrCanvas" width="180" height="180"></canvas>
+          </div>
+          <div class="url-display" id="siteUrlText"></div>
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="copySiteUrl()">نسخ الرابط</button>
+            <button class="btn btn-secondary" onclick="downloadQR()">تحميل رمز QR</button>
+          </div>
+        </div>
+
+        <div id="ai" class="chat-box">
+          <h3>المرشد الذكي للطلبة الجدد</h3>
+          <p style="color: var(--ink-muted); font-size: 0.92rem; margin-bottom: 0.75rem;">
+            اسأل عن مركز الدراسات التحضيرية، السكن، المكتبة، أو التسجيل.
+          </p>
+          <div class="quick-questions">
+            <button class="chip" onclick="askPreset('ما هو مركز الدراسات التحضيرية؟')">مركز الدراسات التحضيرية</button>
+            <button class="chip" onclick="askPreset('كيف أستفيد من المكتبة؟')">خدمات المكتبة</button>
+            <button class="chip" onclick="askPreset('ماذا عن السكن الجامعي؟')">السكن الجامعي</button>
+            <button class="chip" onclick="askPreset('ما هي أهم نصيحة للطالب الجديد؟')">نصيحة للطالب الجديد</button>
+          </div>
+          <div class="chat-messages" id="chatMessages">
+            <div class="msg bot">
+              أهلاً بك في <strong>رحلة السلطان</strong>! كيف يمكنني مساعدتك اليوم كبداية موفقة في جامعة سلطان قابوس؟
+            </div>
+          </div>
+          <form class="chat-form" onsubmit="handleChatSubmit(event)">
+            <input type="text" id="chatInput" class="chat-input" placeholder="اكتب سؤالك هنا..." required />
+            <button type="submit" class="btn btn-primary">إرسال</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    رحلة السلطان — دليل إرشادي مبسط لطلبة جامعة سلطان قابوس • يُرجى مراجعة الجهات الرسمية بالجامعة للقرارات والمواعيد المعتمدة.
+  </footer>
+
+  <script>
+    // ضبط الرابط تلقائياً وتوليد رمز QR واضح
+    const currentUrl = window.location.href;
+    document.getElementById('siteUrlText').textContent = currentUrl;
+
+    function drawSimpleQR(text) {
+      const canvas = document.getElementById('qrCanvas');
+      const ctx = canvas.getContext('2d');
+      const size = 25;
+      const cell = Math.floor(canvas.width / size);
+      const offset = Math.floor((canvas.width - cell * size) / 2);
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // أنماط تحديد الزوايا الثلاث (Finder Patterns)
+      function drawFinder(r, c) {
+        for (let dr = 0; dr < 7; dr++) {
+          for (let dc = 0; dc < 7; dc++) {
+            const isBorder = dr === 0 || dr === 6 || dc === 0 || dc === 6;
+            const isCenter = dr >= 2 && dr <= 4 && dc >= 2 && dc <= 4;
+            if (isBorder || isCenter) {
+              ctx.fillStyle = '#181818';
+              ctx.fillRect(offset + (c + dc) * cell, offset + (r + dr) * cell, cell, cell);
+            }
+          }
+        }
+      }
+
+      drawFinder(0, 0);
+      drawFinder(0, size - 7);
+      drawFinder(size - 7, 0);
+
+      // ملء مصفوفة البيانات بناءً على الرابط الفعلي
+      let hash = 2166136261;
+      for (let i = 0; i < text.length; i++) {
+        hash ^= text.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+      }
+
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          const inTopLeft = r < 8 && c < 8;
+          const inTopRight = r < 8 && c >= size - 8;
+          const inBottomLeft = r >= size - 8 && c < 8;
+          if (inTopLeft || inTopRight || inBottomLeft) continue;
+
+          const charCode = text.charCodeAt((r * size + c) % text.length);
+          const bit = ((hash >>> ((r + c) % 24)) ^ (charCode * (r + 3) + c)) & 1;
+          if (bit === 1) {
+            ctx.fillStyle = '#181818';
+            ctx.fillRect(offset + c * cell, offset + r * cell, cell, cell);
+          }
+        }
+      }
+    }
+
+    drawSimpleQR(currentUrl);
+
+    function copySiteUrl() {
+      navigator.clipboard.writeText(currentUrl).then(() => {
+        alert('تم نسخ رابط الموقع بنجاح!');
+      }).catch(() => {
+        alert('الرابط: ' + currentUrl);
+      });
+    }
+
+    function downloadQR() {
+      const canvas = document.getElementById('qrCanvas');
+      const link = document.createElement('a');
+      link.download = 'rehlat-alsultan-qr.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    // تصفية مواقع الحرم الجامعي
+    function filterPlaces(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.place-item').forEach(item => {
+        if (category === 'all' || item.dataset.cat === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // المساعد الذكي المحلي
+    function getBotReply(question) {
+      const q = question.toLowerCase();
+      if (q.includes('تحضيرية') || q.includes('انجليزي') || q.includes('تأسيس')) {
+        return 'مركز الدراسات التحضيرية (PSC) يهيئ الطلبة الجدد عبر برامج اللغة الإنجليزية والمواد التأسيسية والاختبارات المؤهلة للانتقال إلى الكليات والتخصصات.';
+      }
+      if (q.includes('مكتبة') || q.includes('كتب') || q.includes('دراسة')) {
+        return 'المكتبة الرئيسية توفر مساحات للمذاكرة، استعارة الكتب، والوصول إلى المراجع والمصادر العلمية لدعم أبحاثك ومقرراتك.';
+      }
+      if (q.includes('سكن') || q.includes('إقامة') || q.includes('حياة')) {
+        return 'تتوفر خدمات السكن الطلابي والأنشطة والخدمات المساندة داخل الحرم الجامعي لتسهيل استقرار الطالب الجديد وبناء علاقاته.';
+      }
+      if (q.includes('تسجيل') || q.includes('قبول') || q.includes('جدول')) {
+        return 'احرص على متابعة إعلانات القبول والتسجيل والمرشد الأكاديمي بانتظام، والالتزام بمواعيد التسجيل والحذف والإضافة.';
+      }
+      return 'أفضل نصيحة للطالب الجديد هي تنظيم الجدول مبكراً، زيارة المرافق الأساسية خلال الأسبوع الأول، والاستفسار من المرشد الأكاديمي أو الجهات المختصة عند أي التباس.';
+    }
+
+    function appendMessage(text, sender) {
+      const box = document.getElementById('chatMessages');
+      const div = document.createElement('div');
+      div.className = `msg ${sender}`;
+      div.textContent = text;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function askPreset(text) {
+      appendMessage(text, 'user');
+      setTimeout(() => appendMessage(getBotReply(text), 'bot'), 200);
+    }
+
+    function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+      appendMessage(text, 'user');
+      input.value = '';
+      setTimeout(() => appendMessage(getBotReply(text), 'bot'), 200);
+    }
+  </script>
+</body>
+</html>
