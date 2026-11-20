@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رحلة السلطان | دليل الطالب الجديد التفاعلي - جامعة سلطان قابوس</title>
+    <!-- تحميل Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- تحميل خط Tajawal و Cairo من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- تحميل مكتبة أيقونات Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- تحميل مكتبة توليد رمز QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FDF8EC',
+                            100: '#FAF3E0',
+                            200: '#F2E5C6',
+                            300: '#E5D1A1',
+                        },
+                        charcoal: {
+                            800: '#262626',
+                            900: '#1A1A1A',
+                        },
+                        squgold: {
+                            400: '#D9B13B',
+                            500: '#C59B27',
+                            600: '#A37E1B',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'Cairo', 'sans-serif'],
+                        display: ['Cairo', 'Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF3E0;
+            color: #1A1A1A;
+            font-family: 'Tajawal', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* خطوط ومنحنيات انسيابية مستوحاة من البطاقة */
+        .card-curve-border {
+            border: 2.5px solid #1A1A1A;
+            box-shadow: 6px 6px 0px #1A1A1A;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-curve-border:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 9px 9px 0px #C59B27;
+        }
+
+        .btn-brutal {
+            border: 2px solid #1A1A1A;
+            box-shadow: 4px 4px 0px #1A1A1A;
+            transition: all 0.2s ease;
+        }
+
+        .btn-brutal:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 6px 6px 0px #1A1A1A;
+        }
+
+        .btn-brutal:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #1A1A1A;
+        }
+
+        /* شريط تمرير مخصص للدردشة */
+        .chat-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-scroll::-webkit-scrollbar-track {
+            background: #FDF8EC;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background: #C59B27;
+            border-radius: 9999px;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        .typing-dot {
+            animation: pulse-dot 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    </style>
+</head>
+<body class="antialiased selection:bg-squgold-500 selection:text-white">
+
+    <!-- منحنيات زخرفية خلفية مستوحاة من البطاقة -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-25">
+        <svg class="w-full h-full" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M-100 180 C 300 40, 600 380, 1540 120" stroke="#1A1A1A" stroke-width="3" fill="none"/>
+            <path d="M-100 680 C 450 850, 950 450, 1540 720" stroke="#C59B27" stroke-width="4" fill="none"/>
+        </svg>
+    </div>
+
+    <!-- 1. الشريط العلوي (Navbar) -->
+    <header class="sticky top-0 z-40 bg-cream-50/95 backdrop-blur-md border-b-2 border-charcoal-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- الشعار -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-charcoal-900 text-squgold-400 flex items-center justify-center border-2 border-charcoal-900 group-hover:bg-squgold-500 group-hover:text-charcoal-900 transition-colors">
+                        <i data-lucide="compass" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="block font-display font-extrabold text-xl tracking-tight text-charcoal-900">رحلة السلطان</span>
+                        <span class="block text-xs font-semibold text-squgold-600">جامعة سلطان قابوس</span>
+                    </div>
+                </a>
+
+                <!-- روابط التنقل لسطح المكتب -->
+                <nav class="hidden md:flex items-center gap-6 font-bold text-sm lg:text-base">
+                    <a href="#home" class="hover:text-squgold-600 transition-colors">الرئيسية</a>
+                    <a href="#psc" class="hover:text-squgold-600 transition-colors">الدراسات التحضيرية</a>
+                    <a href="#services" class="hover:text-squgold-600 transition-colors">خدمات الجامعة</a>
+                    <a href="#campus-map" class="hover:text-squgold-600 transition-colors">خريطة الحرم</a>
+                    <a href="#qr-section" class="hover:text-squgold-600 transition-colors">رمز QR</a>
+                    <a href="#ai-advisor" class="px-4 py-2 rounded-xl bg-squgold-500 text-charcoal-900 border-2 border-charcoal-900 hover:bg-squgold-400 transition-all flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                        <span>المساعد الذكي</span>
+                    </a>
+                </nav>
+
+                <!-- زر القائمة للجوال -->
+                <button id="mobile-menu-btn" aria-label="فتح القائمة" class="md:hidden p-2.5 rounded-xl bg-cream-100 border-2 border-charcoal-900 text-charcoal-900">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- القائمة المنسدلة للجوال -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-50 border-t-2 border-charcoal-900 px-4 pt-3 pb-5 space-y-2">
+            <a href="#home" class="mobile-link block px-4 py-2.5 rounded-xl font-bold hover:bg-cream-200">الرئيسية</a>
+            <a href="#psc" class="mobile-link block px-4 py-2.5 rounded-xl font-bold hover:bg-cream-200">مركز الدراسات التحضيرية</a>
+            <a href="#services" class="mobile-link block px-4 py-2.5 rounded-xl font-bold hover:bg-cream-200">خدمات الجامعة</a>
+            <a href="#campus-map" class="mobile-link block px-4 py-2.5 rounded-xl font-bold hover:bg-cream-200">خريطة الحرم الجامعي</a>
+            <a href="#qr-section" class="mobile-link block px-4 py-2.5 rounded-xl font-bold hover:bg-cream-200">رمز QR للمشاركة</a>
+            <a href="#ai-advisor" class="mobile-link block px-4 py-3 rounded-xl font-bold bg-squgold-500 text-charcoal-900 border-2 border-charcoal-900 text-center mt-2">اسأل المساعد الذكي</a>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <!-- 2. القسم الترحيبي (Hero Section) -->
+        <section id="home" class="pt-10 pb-16 md:pt-16 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="bg-cream-50 rounded-3xl p-6 sm:p-10 lg:p-14 card-curve-border relative overflow-hidden">
+                <!-- خط منحني زخرفي داخل البطاقة مستوحى من الصورة المرجعية -->
+                <svg class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20" viewBox="0 0 800 400" fill="none">
+                    <path d="M480 -20 C 420 160, 580 280, 820 260" stroke="#1A1A1A" stroke-width="4"/>
+                    <path d="M-20 320 C 180 260, 320 350, 440 420" stroke="#C59B27" stroke-width="5"/>
+                </svg>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+                    <!-- النص الترحيبي -->
+                    <div class="lg:col-span-7 space-y-6 text-right">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cream-200 border-2 border-charcoal-900 text-sm font-bold text-charcoal-900">
+                            <span class="w-2.5 h-2.5 rounded-full bg-squgold-500 animate-ping"></span>
+                            <span>مرحباً بالدفعة الجديدة في رحاب العلم والمعرفة</span>
+                        </div>
+
+                        <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl leading-tight text-charcoal-900">
+                            رحلة السلطان:
+                            <span class="block text-squgold-600 mt-1">دليلك الشامل في جامعة سلطان قابوس</span>
+                        </h1>
+
+                        <p class="text-base sm:text-lg text-charcoal-800 leading-relaxed max-w-2xl">
+                            منصتك التفاعلية الأولى للانطلاق بثقة في حياتك الجامعية. استكشف برامج مركز الدراسات التحضيرية، تعرف على الخدمات الطلابية والمرافق، وتحدث مع مرشدك الذكي الفوري للإجابة عن كل تساؤلاتك.
+                        </p>
+
+                        <div class="flex flex-wrap items-center gap-4 pt-2">
+                            <a href="#ai-advisor" class="btn-brutal px-6 py-3.5 rounded-2xl bg-charcoal-900 text-cream-50 font-bold text-base flex items-center gap-2.5 hover:bg-charcoal-800">
+                                <i data-lucide="bot" class="w-5 h-5 text-squgold-400"></i>
+                                <span>اسأل المساعد الذكي</span>
+                            </a>
+                            <a href="#services" class="btn-brutal px-6 py-3.5 rounded-2xl bg-squgold-500 text-charcoal-900 font-bold text-base flex items-center gap-2.5 hover:bg-squgold-400">
+                                <i data-lucide="layers" class="w-5 h-5"></i>
+                                <span>استكشف الخدمات</span>
+                            </a>
+                        </div>
+
+                        <!-- إحصائيات سريعة -->
+                        <div class="grid grid-cols-3 gap-4 pt-4 border-t-2 border-cream-200 max-w-lg">
+                            <div>
+                                <span class="block font-display font-extrabold text-2xl text-charcoal-900">9</span>
+                                <span class="text-xs sm:text-sm text-charcoal-800 font-medium">كليات أكاديمية</span>
+                            </div>
+                            <div>
+                                <span class="block font-display font-extrabold text-2xl text-squgold-600">+20</span>
+                                <span class="text-xs sm:text-sm text-charcoal-800 font-medium">خدمة ومرفق طلابي</span>
+                            </div>
+                            <div>
+                                <span class="block font-display font-extrabold text-2xl text-charcoal-900">24/7</span>
+                                <span class="text-xs sm:text-sm text-charcoal-800 font-medium">إرشاد ذكي فوري</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- رسم توضيحي أنيق لبرج ساعة جامعة سلطان قابوس مستوحى من البطاقة -->
+                    <div class="lg:col-span-5 flex flex-col items-center justify-center">
+                        <div class="w-full max-w-md bg-cream-100 rounded-3xl p-6 border-2 border-charcoal-900 relative">
+                            <!-- قوس ذهبي خلف البرج مثل بطاقة رحلة السلطان -->
+                            <svg viewBox="0 0 360 280" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- القوس الذهبي -->
+                                <path d="M 65 215 A 115 115 0 0 1 295 215" stroke="#C59B27" stroke-width="6" stroke-linecap="round"/>
+                                <!-- سحب خفيفة -->
+                                <path d="M 45 85 Q 60 75 75 85" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                                <path d="M 275 70 Q 290 60 305 70" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                                
+                                <!-- قاعدة المبنى الأيمن والأيسر -->
+                                <rect x="35" y="175" width="95" height="65" rx="3" fill="#E5D1A1" stroke="#1A1A1A" stroke-width="2.5"/>
+                                <rect x="230" y="175" width="95" height="65" rx="3" fill="#E5D1A1" stroke="#1A1A1A" stroke-width="2.5"/>
+                                
+                                <!-- أقواس النوافذ الجانبية -->
+                                <path d="M 52 240 V 205 A 8 8 0 0 1 68 205 V 240" fill="#FDF8EC" stroke="#1A1A1A" stroke-width="2"/>
+                                <path d="M 80 240 V 205 A 8 8 0 0 1 96 205 V 240" fill="#FDF8EC" stroke="#1A1A1A" stroke-width="2"/>
+                                <path d="M 108 240 V 205 A 8 8 0 0 1 124 205 V 240" fill="#FDF8EC" stroke="#1A1A1A" stroke-width="2"/>
+
+                                <path d="M 238 240 V 205 A 8 8 0 0 1 254 205 V 240" fill="#FDF8EC" stroke="#1A1A1A" stroke-width="2"/>
+                                <path d="M 266 240 V 205 A 8 8 0 0 1 282 205 V 240" fill="#FDF8EC" stroke="#1A1A1A" stroke-width="2"/>
+                                <path d="M 294 240 V 205 A 8 8 0 0 1 310 205 V 240" fill="#FDF8EC" stroke="#1A1A1A" stroke-width="2"/>
+
+                                <!-- برج الساعة المركزي -->
+                                <rect x="130" y="105" width="100" height="135" rx="4" fill="#F2E5C6" stroke="#1A1A1A" stroke-width="2.5"/>
+                                <!-- تاج البرج -->
+                                <rect x="142" y="75" width="76" height="30" rx="3" fill="#E5D1A1" stroke="#1A1A1A" stroke-width="2.5"/>
+                                <path d="M 155 75 L 180 52 L 205 75 Z" fill="#C59B27" stroke="#1A1A1A" stroke-width="2.5"/>
+                                
+                                <!-- ساعة البرج -->
+                                <circle cx="180" cy="132" r="20" fill="#FDF8EC" stroke="#1A1A1A" stroke-width="2.5"/>
+                                <circle cx="180" cy="132" r="15" stroke="#C59B27" stroke-width="1.5"/>
+                                <path d="M 180 132 V 121 M 180 132 L 188 132" stroke="#1A1A1A" stroke-width="2.2" stroke-linecap="round"/>
+
+                                <!-- البوابة المقوسة الرئيسية -->
+                                <path d="M 155 240 V 188 Q 180 165 205 188 V 240 Z" fill="#1A1A1A"/>
+                                <path d="M 163 240 V 192 Q 180 175 197 192 V 240 Z" fill="#C59B27"/>
+
+                                <!-- خط الأرضية -->
+                                <line x1="15" y1="240" x2="345" y2="240" stroke="#1A1A1A" stroke-width="3.5" stroke-linecap="round"/>
+                            </svg>
+                            <div class="text-center mt-2">
+                                <span class="inline-block px-3 py-1 rounded-full bg-charcoal-900 text-cream-50 text-xs font-bold">
+                                    برج الساعة • رمز جامعة سلطان قابوس
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. قسم مركز الدراسات التحضيرية (Preparatory Studies Center - PSC) -->
+        <section id="psc" class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-sm font-extrabold text-squgold-600 uppercase tracking-wider">الخطوة الأولى في مسيرتك</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-charcoal-900 mt-1">
+                        مركز الدراسات التحضيرية (PSC)
+                    </h2>
+                </div>
+                <p class="text-charcoal-800 max-w-xl text-sm sm:text-base">
+                    يهدف البرنامج التأسيسي إلى تزويد الطلبة الجدد بالمهارات اللغوية والأكاديمية والتقنية اللازمة للنجاح في تخصصاتهم الجامعية.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- بطاقة 1: اللغة الإنجليزية -->
+                <div class="bg-cream-50 rounded-3xl p-6 card-curve-border flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-squgold-500 border-2 border-charcoal-900 flex items-center justify-center mb-5">
+                            <i data-lucide="languages" class="w-6 h-6 text-charcoal-900"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl mb-2 text-charcoal-900">برنامج اللغة الإنجليزية</h3>
+                        <p class="text-sm text-charcoal-800 leading-relaxed mb-4">
+                            يتكون من 6 مستويات (من FPEL 0100 إلى FPEL 0600) تُحدد بناءً على اختبار تحديد المستوى، وتركز على القراءة، الكتابة الأكاديمية، الاستماع، والتحدث.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t-2 border-cream-200 flex items-center justify-between text-xs font-bold text-squgold-600">
+                        <span>المستويات: 1 - 6</span>
+                        <button onclick="askQuickQuestion('حدثني بالتفصيل عن مستويات اللغة الإنجليزية في مركز الدراسات التحضيرية')" class="underline hover:text-charcoal-900">اسأل المساعد ←</button>
+                    </div>
+                </div>
+
+                <!-- بطاقة 2: الرياضيات وتقنية المعلومات -->
+                <div class="bg-cream-50 rounded-3xl p-6 card-curve-border flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-charcoal-900 border-2 border-charcoal-900 flex items-center justify-center mb-5">
+                            <i data-lucide="calculator" class="w-6 h-6 text-squgold-400"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl mb-2 text-charcoal-900">الرياضيات وتقنية المعلومات</h3>
+                        <p class="text-sm text-charcoal-800 leading-relaxed mb-4">
+                            يشمل مقررات الرياضيات الأساسية والتطبيقية (حسب الكلية العلمية أو الإنسانية)، ومهارات الحاسوب الأساسية وبرامج الإنتاجية الرقمية.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t-2 border-cream-200 flex items-center justify-between text-xs font-bold text-squgold-600">
+                        <span>مقررات تأسيسية</span>
+                        <button onclick="askQuickQuestion('ما هي مقررات الرياضيات وتقنية المعلومات في البرنامج التأسيسي؟')" class="underline hover:text-charcoal-900">اسأل المساعد ←</button>
+                    </div>
+                </div>
+
+                <!-- بطاقة 3: مهارات الدراسة الجامعية -->
+                <div class="bg-cream-50 rounded-3xl p-6 card-curve-border flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-squgold-500 border-2 border-charcoal-900 flex items-center justify-center mb-5">
+                            <i data-lucide="book-open-check" class="w-6 h-6 text-charcoal-900"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl mb-2 text-charcoal-900">مهارات الدراسة الجامعية</h3>
+                        <p class="text-sm text-charcoal-800 leading-relaxed mb-4">
+                            تُدمج ضمن المقررات لتعزيز إدارة الوقت، البحث العلمي، التفكير الناقد، العمل الجماعي، والالتزام بالنزاهة الأكاديمية.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t-2 border-cream-200 flex items-center justify-between text-xs font-bold text-squgold-600">
+                        <span>تطوير الذات</span>
+                        <button onclick="askQuickQuestion('كيف أطور مهارات الدراسة الجامعية في سنتي الأولى؟')" class="underline hover:text-charcoal-900">اسأل المساعد ←</button>
+                    </div>
+                </div>
+
+                <!-- بطاقة 4: نظام التقييم والاختبارات -->
+                <div class="bg-cream-50 rounded-3xl p-6 card-curve-border flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-charcoal-900 border-2 border-charcoal-900 flex items-center justify-center mb-5">
+                            <i data-lucide="award" class="w-6 h-6 text-squgold-400"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl mb-2 text-charcoal-900">التقييم واختبارات الإعفاء</h3>
+                        <p class="text-sm text-charcoal-800 leading-relaxed mb-4">
+                            يعتمد التقييم على الاختبارات المستمرة، المشاريع، والامتحان النهائي. يمكن الإعفاء من التأسيسي باجتياز اختبارات تحديد المستوى أو شهادة IELTS معتمدة.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t-2 border-cream-200 flex items-center justify-between text-xs font-bold text-squgold-600">
+                        <span>اجتياز البرنامج</span>
+                        <button onclick="askQuickQuestion('كيف يمكنني الحصول على إعفاء من البرنامج التأسيسي؟')" class="underline hover:text-charcoal-900">اسأل المساعد ←</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. قسم خدمات الجامعة الأساسية للطلبة الجدد -->
+        <section id="services" class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="inline-block px-3.5 py-1 rounded-full bg-cream-200 border-2 border-charcoal-900 text-xs font-extrabold mb-3">كل ما تحتاجه في مكان واحد</span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-charcoal-900">خدمات الجامعة الأساسية للطلبة</h2>
+                <p class="text-charcoal-800 mt-3 text-sm sm:text-base">
+                    توفر جامعة سلطان قابوس منظومة متكاملة من الخدمات الأكاديمية والمعيشية والصحية لدعم رحلتك الجامعية.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- الخدمة 1: القبول والتسجيل -->
+                <div class="bg-cream-50 rounded-3xl p-7 card-curve-border">
+                    <div class="flex items-start gap-4">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-squgold-500 border-2 border-charcoal-900 flex items-center justify-center">
+                            <i data-lucide="file-check-2" class="w-7 h-7 text-charcoal-900"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <h3 class="font-display font-extrabold text-2xl text-charcoal-900">القبول والتسجيل (SIS)</h3>
+                            <p class="text-sm text-charcoal-800 leading-relaxed">
+                                عمادة القبول والتسجيل هي بوابتك لإدارة جدولك الدراسي. عبر <strong>نظام معلومات الطالب (SIS)</strong> يمكنك تسجيل المقررات، الحذف والإضافة، متابعة المعدل التراكمي، والتواصل مع مرشدك الأكاديمي.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">بوابة الطالب SIS</span>
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">الحذف والإضافة</span>
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">الإرشاد الأكاديمي</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الخدمة 2: السكن والتغذية -->
+                <div class="bg-cream-50 rounded-3xl p-7 card-curve-border">
+                    <div class="flex items-start gap-4">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-charcoal-900 border-2 border-charcoal-900 flex items-center justify-center">
+                            <i data-lucide="home" class="w-7 h-7 text-squgold-400"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <h3 class="font-display font-extrabold text-2xl text-charcoal-900">السكن والتغذية والمخصصات</h3>
+                            <p class="text-sm text-charcoal-800 leading-relaxed">
+                                توفر الجامعة مجمعات سكنية متكاملة داخل الحرم الجامعي للطالبات المستحقات، بينما يحصل الطلاب المستحقون على علاوة معيشة شهرية، مع توفر مطاعم وكافتيريات متنوعة في جميع الكليات.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">مجمعات الطالبات</span>
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">علاوة المعيشة</span>
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">المطاعم الجامعية</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الخدمة 3: الخدمات الأكاديمية والمكتبات -->
+                <div class="bg-cream-50 rounded-3xl p-7 card-curve-border">
+                    <div class="flex items-start gap-4">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-charcoal-900 border-2 border-charcoal-900 flex items-center justify-center">
+                            <i data-lucide="library" class="w-7 h-7 text-squgold-400"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <h3 class="font-display font-extrabold text-2xl text-charcoal-900">المكتبة الرئيسية والتعليم الإلكتروني</h3>
+                            <p class="text-sm text-charcoal-800 leading-relaxed">
+                                تضم المكتبة الرئيسية آلاف الكتب والمراجع الرقمية وقاعات الدراسة الهادئة. كما يربطك نظام <strong>Moodle (E-Learning)</strong> بمحاضراتك، واجباتك، وتواصلك المباشر مع الأساتذة.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">المكتبة الرئيسية</span>
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">منصة Moodle</span>
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">قواعد البيانات</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الخدمة 4: الرعاية الصحية والأنشطة -->
+                <div class="bg-cream-50 rounded-3xl p-7 card-curve-border">
+                    <div class="flex items-start gap-4">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-squgold-500 border-2 border-charcoal-900 flex items-center justify-center">
+                            <i data-lucide="heart-pulse" class="w-7 h-7 text-charcoal-900"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <h3 class="font-display font-extrabold text-2xl text-charcoal-900">الرعاية الصحية والأنشطة الطلابية</h3>
+                            <p class="text-sm text-charcoal-800 leading-relaxed">
+                                تتوفر رعاية طبية مجانية عبر عيادة الطلبة ومستشفى جامعة سلطان قابوس. كما تشرف عمادة شؤون الطلبة على عشرات الجماعات الطلابية والأندية الثقافية والرياضية.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">عيادة الطلبة</span>
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">عمادة شؤون الطلبة</span>
+                                <span class="px-3 py-1 rounded-lg bg-cream-200 text-xs font-bold border border-charcoal-900">الجماعات الطلابية</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. قسم خريطة الحرم الجامعي التفاعلية -->
+        <section id="campus-map" class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="bg-cream-50 rounded-3xl p-6 sm:p-10 card-curve-border">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <span class="text-xs font-extrabold text-squgold-600 uppercase">دليل التنقل في الحرم</span>
+                        <h2 class="font-display font-extrabold text-3xl text-charcoal-900 mt-1">خريطة الحرم الجامعي التفاعلية</h2>
+                    </div>
+                    <!-- أزرار التصفية -->
+                    <div class="flex flex-wrap gap-2" id="map-filters">
+                        <button data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-charcoal-900 text-cream-50 border-2 border-charcoal-900">الكل</button>
+                        <button data-filter="landmark" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-cream-100 text-charcoal-900 border-2 border-charcoal-900 hover:bg-squgold-400">معالم رئيسية</button>
+                        <button data-filter="academic" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-cream-100 text-charcoal-900 border-2 border-charcoal-900 hover:bg-squgold-400">أكاديمي</button>
+                        <button data-filter="services" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-cream-100 text-charcoal-900 border-2 border-charcoal-900 hover:bg-squgold-400">خدمات طلابية</button>
+                    </div>
+                </div>
+
+                <!-- مخطط بصري مبسط للحرم + بطاقات المواقع -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- بطاقات المواقع -->
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4" id="locations-grid">
+                        <!-- يتم تعبئتها بواسطة JavaScript -->
+                    </div>
+
+                    <!-- لوحة تفاصيل الموقع المختار -->
+                    <div class="lg:col-span-5 bg-cream-100 rounded-2xl p-6 border-2 border-charcoal-900 sticky top-24">
+                        <div class="flex items-center justify-between mb-4">
+                            <span id="selected-loc-badge" class="px-3 py-1 rounded-full bg-squgold-500 text-charcoal-900 text-xs font-extrabold border border-charcoal-900">معلم رئيسي</span>
+                            <i data-lucide="map-pin" class="w-6 h-6 text-charcoal-900"></i>
+                        </div>
+                        <h3 id="selected-loc-title" class="font-display font-extrabold text-2xl text-charcoal-900 mb-2">برج الساعة والساحة الكبرى</h3>
+                        <p id="selected-loc-desc" class="text-sm text-charcoal-800 leading-relaxed mb-4">
+                            يقع في قلب الحرم الجامعي ويُعد نقطة الالتقاء الأشهر للطلبة. يربط بين الممر الأكاديمي الرئيسي ومباني الإدارة والمركز الثقافي.
+                        </p>
+                        <div class="bg-cream-50 rounded-xl p-4 border-2 border-charcoal-900 space-y-2">
+                            <div class="flex items-center gap-2 text-xs font-bold text-charcoal-900">
+                                <i data-lucide="navigation" class="w-4 h-4 text-squgold-600"></i>
+                                <span>إرشادات الوصول:</span>
+                            </div>
+                            <p id="selected-loc-directions" class="text-xs text-charcoal-800 leading-relaxed">
+                                ادخل من البوابة الرئيسية للجامعة واتجه مباشرة نحو المحور المركزي، ستجد برج الساعة أمامك مباشرة عند مدخل الممر الأكاديمي.
+                            </p>
+                        </div>
+                        <button id="ask-about-loc-btn" class="mt-4 w-full btn-brutal py-2.5 px-4 rounded-xl bg-charcoal-900 text-cream-50 text-xs sm:text-sm font-bold flex items-center justify-center gap-2">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-squgold-400"></i>
+                            <span>اسأل المساعد الذكي عن هذا الموقع</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. قسم رمز الاستجابة السريعة (QR Code) للمشاركة + 7. المساعد الذكي التفاعلي -->
+        <section class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                
+                <!-- قسم رمز QR للمشاركة (5 أعمدة) -->
+                <div id="qr-section" class="lg:col-span-5 bg-cream-50 rounded-3xl p-6 sm:p-8 card-curve-border flex flex-col justify-between">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cream-200 border border-charcoal-900 text-xs font-bold mb-3">
+                            <i data-lucide="qr-code" class="w-4 h-4 text-squgold-600"></i>
+                            <span>شارك الدليل مع زملائك</span>
+                        </div>
+                        <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-charcoal-900 mb-2">رمز QR السريع للموقع</h2>
+                        <p class="text-sm text-charcoal-800 mb-6">
+                            امسح الرمز بهاتفك أو شاركه في مجموعات الطلبة الجدد للوصول الفوري إلى دليل "رحلة السلطان" ومرشدك الذكي.
+                        </p>
+
+                        <!-- حاوية رمز QR -->
+                        <div class="bg-white p-5 rounded-2xl border-2 border-charcoal-900 w-fit mx-auto shadow-inner flex flex-col items-center">
+                            <div id="qrcode-container" class="p-1"></div>
+                            <span class="mt-3 text-xs font-extrabold text-charcoal-900 tracking-wide">رحلة السلطان • SQU</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 space-y-3">
+                        <!-- حقل عرض الرابط القابل للتعديل -->
+                        <div class="flex items-center gap-2 bg-cream-100 p-2 rounded-xl border-2 border-charcoal-900">
+                            <input id="qr-url-input" type="text" readonly class="bg-transparent text-xs font-mono text-charcoal-800 w-full focus:outline-none px-2" dir="ltr">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="downloadQRCode()" class="btn-brutal py-3 px-4 rounded-xl bg-squgold-500 text-charcoal-900 font-bold text-xs sm:text-sm flex items-center justify-center gap-2">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                <span>تحميل QR (PNG)</span>
+                            </button>
+                            <button onclick="copySiteLink()" class="btn-brutal py-3 px-4 rounded-xl bg-charcoal-900 text-cream-50 font-bold text-xs sm:text-sm flex items-center justify-center gap-2">
+                                <i data-lucide="copy" class="w-4 h-4 text-squgold-400"></i>
+                                <span id="copy-btn-text">نسخ الرابط</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. المساعد الذكي التفاعلي المدمج (7 أعمدة) -->
+                <div id="ai-advisor" class="lg:col-span-7 bg-cream-50 rounded-3xl p-6 sm:p-8 card-curve-border flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b-2 border-cream-200 pb-4 mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-2xl bg-charcoal-900 text-squgold-400 flex items-center justify-center border-2 border-charcoal-900">
+                                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h2 class="font-display font-extrabold text-xl sm:text-2xl text-charcoal-900">مرشد السلطان الذكي (Gemini AI)</h2>
+                                    <p class="text-xs text-squgold-600 font-bold">اسألني عن التسجيل، التحضيرية، السكن، أو أي خدمة بالجامعة</p>
+                                </div>
+                            </div>
+                            <button onclick="clearChat()" title="مسح المحادثة" class="p-2 rounded-xl bg-cream-100 border-2 border-charcoal-900 hover:bg-cream-200 text-charcoal-900">
+                                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                        <!-- أزرار الأسئلة السريعة المقترحة -->
+                        <div class="mb-4">
+                            <span class="block text-xs font-bold text-charcoal-800 mb-2">أسئلة شائعة سريعة:</span>
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="askQuickQuestion('ما هي مواد مركز الدراسات التحضيرية؟')" class="px-3 py-1.5 rounded-xl bg-cream-100 hover:bg-squgold-400 text-charcoal-900 border border-charcoal-900 text-xs font-bold transition-colors">
+                                    ما هي مواد مركز الدراسات التحضيرية؟
+                                </button>
+                                <button onclick="askQuickQuestion('كيف أسجل موادي في SIS؟')" class="px-3 py-1.5 rounded-xl bg-cream-100 hover:bg-squgold-400 text-charcoal-900 border border-charcoal-900 text-xs font-bold transition-colors">
+                                    كيف أسجل موادي في SIS؟
+                                </button>
+                                <button onclick="askQuickQuestion('أين يقع مركز خدمات الطلبة؟')" class="px-3 py-1.5 rounded-xl bg-cream-100 hover:bg-squgold-400 text-charcoal-900 border border-charcoal-900 text-xs font-bold transition-colors">
+                                    أين يقع مركز خدمات الطلبة؟
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- نافذة عرض الرسائل -->
+                        <div id="chat-messages" class="chat-scroll h-72 overflow-y-auto bg-cream-100 rounded-2xl p-4 border-2 border-charcoal-900 space-y-3 mb-4">
+                            <!-- رسالة ترحيبية افتراضية -->
+                            <div class="flex items-start gap-2.5">
+                                <div class="w-8 h-8 rounded-xl bg-charcoal-900 text-squgold-400 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="bot" class="w-4 h-4"></i>
+                                </div>
+                                <div class="bg-cream-50 border-2 border-charcoal-900 rounded-2xl rounded-tr-none p-3.5 text-sm text-charcoal-900 leading-relaxed max-w-[85%]">
+                                    أهلاً بك يا بطل في <strong>جامعة سلطان قابوس</strong>! 🎓 أنا مرشدك الذكي في <strong>رحلة السلطان</strong>. كيف يمكنني مساعدتك اليوم؟ يمكنك سؤالي عن مركز الدراسات التحضيرية، بوابة SIS، السكن، المكتبة، أو مواقع الكليات.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- نموذج إدخال السؤال -->
+                    <form id="chat-form" class="flex items-center gap-2">
+                        <input id="chat-input" type="text" placeholder="اكتب سؤالك هنا حول جامعة سلطان قابوس..." required
+                            class="flex-1 bg-cream-50 border-2 border-charcoal-900 rounded-2xl px-4 py-3 text-sm text-charcoal-900 placeholder:text-charcoal-800/60 focus:outline-none focus:ring-2 focus:ring-squgold-500">
+                        <button type="submit" id="chat-submit-btn" class="btn-brutal px-5 py-3 rounded-2xl bg-charcoal-900 text-cream-50 font-bold text-sm flex items-center gap-2 hover:bg-charcoal-800">
+                            <span>إرسال</span>
+                            <i data-lucide="send" class="w-4 h-4 text-squgold-400 rotate-180"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- زر المساعد الذكي العائم في الزاوية -->
+    <button onclick="scrollToAdvisor()" aria-label="المساعد الذكي"
+        class="fixed bottom-5 left-5 z-50 btn-brutal p-3.5 rounded-2xl bg-charcoal-900 text-squgold-400 flex items-center gap-2 hover:bg-charcoal-800">
+        <i data-lucide="message-square-sparkles" class="w-6 h-6"></i>
+        <span class="hidden sm:inline font-bold text-sm text-cream-50">اسأل المرشد</span>
+    </button>
+
+    <!-- إشعار Toast مخصص (بديل alert) -->
+    <div id="toast-box" class="fixed bottom-20 right-5 z-50 hidden transform transition-all duration-300">
+        <div class="bg-charcoal-900 text-cream-50 border-2 border-squgold-500 px-5 py-3 rounded-2xl shadow-lg flex items-center gap-2.5 text-sm font-bold">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-squgold-400"></i>
+            <span id="toast-message">تم النسخ بنجاح!</span>
+        </div>
+    </div>
+
+    <!-- التذييل (Footer) -->
+    <footer class="relative z-10 bg-charcoal-900 text-cream-100 border-t-4 border-squgold-500 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-squgold-500 text-charcoal-900 flex items-center justify-center font-extrabold">
+                        <i data-lucide="compass" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="font-display font-extrabold text-lg text-cream-50">رحلة السلطان</span>
+                        <p class="text-xs text-cream-300">دليل الطالب الجديد التفاعلي لخدمات جامعة سلطان قابوس</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 text-xs sm:text-sm font-bold text-cream-200">
+                    <a href="#home" class="hover:text-squgold-400">الرئيسية</a>
+                    <a href="#psc" class="hover:text-squgold-400">الدراسات التحضيرية</a>
+                    <a href="#services" class="hover:text-squgold-400">الخدمات</a>
+                    <a href="#campus-map" class="hover:text-squgold-400">الخريطة</a>
+                    <a href="#qr-section" class="hover:text-squgold-400">رمز QR</a>
+                </div>
+            </div>
+            <div class="border-t border-charcoal-800 mt-8 pt-6 text-center text-xs text-cream-300">
+                صُمم بكل حب لدعم طلبة جامعة سلطان قابوس الجدد في بداية رحلتهم الأكاديمية • سلطنة عُمان
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // تهيئة أيقونات Lucide
+        lucide.createIcons();
+
+        // 1. التحكم في قائمة الجوال
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // 2. بيانات خريطة الحرم الجامعي التفاعلية
+        const campusLocations = [
+            {
+                id: 'clock-tower',
+                name: 'برج الساعة والساحة الكبرى',
+                category: 'landmark',
+                badge: 'معلم رئيسي',
+                icon: 'clock',
+                desc: 'يقع في قلب الحرم الجامعي ويُعد نقطة الالتقاء الأشهر للطلبة. يربط بين الممر الأكاديمي الرئيسي ومباني الإدارة والمركز الثقافي.',
+                directions: 'ادخل من البوابة الرئيسية للجامعة واتجه مباشرة نحو المحور المركزي، ستجد برج الساعة أمامك مباشرة عند مدخل الممر الأكاديمي.'
+            },
+            {
+                id: 'psc-building',
+                name: 'مركز الدراسات التحضيرية (PSC)',
+                category: 'academic',
+                badge: 'أكاديمي',
+                icon: 'book-open',
+                desc: 'المقر الرئيسي لطلبة السنة التأسيسية، ويضم قاعات اللغة الإنجليزية، مختبرات الحاسوب، ومكاتب هيئة التدريس.',
+                directions: 'يقع في الجهة الشمالية من الحرم الجامعي بالقرب من كلية الآداب والعلوم الاجتماعية ومواقف حافلات الطلبة.'
+            },
+            {
+                id: 'main-library',
+                name: 'المكتبة الرئيسية',
+                category: 'academic',
+                badge: 'أكاديمي',
+                icon: 'library',
+                desc: 'صرح معرفي يضم طوابق متعددة للمطالعة الهادئة، الكتب والمراجع العلمية، وأجهزة الحاسوب للبحث الأكاديمي.',
+                directions: 'تقع بالقرب من منتصف الممر الأكاديمي الرئيسي مقابل كلية العلوم، ويمكن الوصول إليها سيراً خلال 3 دقائق من برج الساعة.'
+            },
+            {
+                id: 'student-services',
+                name: 'مركز خدمات الطلبة وعمادة القبول',
+                category: 'services',
+                badge: 'خدمات طلابية',
+                icon: 'users',
+                desc: 'الوجهة الأساسية لإصدار البطاقة الجامعية، استفسارات التسجيل في SIS، خدمات عمادة شؤون الطلبة، والمطاعم والمصارف.',
+                directions: 'يقع بجوار الممر الأكاديمي بالقرب من المسجد الجامعي، ويتميز بسهولة الوصول إليه من جميع الكليات.'
+            },
+            {
+                id: 'lecture-halls',
+                name: 'مجمعات القاعات الدراسية (A, B, C, D)',
+                category: 'academic',
+                badge: 'أكاديمي',
+                icon: 'school',
+                desc: 'مجمعات قاعات المحاضرات العامة المشتركة بين مختلف الكليات والتخصصات الجامعية.',
+                directions: 'تتوزع على جانبي الممر الأكاديمي الرئيسي المظلل، وتوجد لوحات إرشادية واضحة عند مدخل كل مجمع.'
+            },
+            {
+                id: 'student-clinic',
+                name: 'عيادة الطلبة ومستشفى الجامعة',
+                category: 'services',
+                badge: 'خدمات طلابية',
+                icon: 'stethoscope',
+                desc: 'تقدم الرعاية الصحية الأولية والفحوصات الطبية المجانية لجميع طلبة الجامعة المسجلين.',
+                directions: 'تقع في الجزء الغربي من الحرم الجامعي بالقرب من كلية الطب والعلوم الصحية ومستشفى جامعة سلطان قابوس.'
+            }
+        ];
+
+        const locationsGrid = document.getElementById('locations-grid');
+        let selectedLocation = campusLocations[0];
+
+        function renderLocations(filter = 'all') {
+            locationsGrid.innerHTML = '';
+            const filtered = filter === 'all'
+                ? campusLocations
+                : campusLocations.filter(loc => loc.category === filter);
+
+            filtered.forEach(loc => {
+                const isSelected = loc.id === selectedLocation.id;
+                const card = document.createElement('div');
+                card.className = `cursor-pointer rounded-2xl p-4 border-2 border-charcoal-900 transition-all ${
+                    isSelected ? 'bg-squgold-500 text-charcoal-900 shadow-[4px_4px_0px_#1A1A1A]' : 'bg-cream-100 hover:bg-cream-200'
+                }`;
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-extrabold px-2.5 py-0.5 rounded-full border border-charcoal-900 ${isSelected ? 'bg-cream-50' : 'bg-cream-50'}">${loc.badge}</span>
+                        <i data-lucide="${loc.icon}" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-display font-bold text-base leading-snug">${loc.name}</h4>
+                `;
+                card.addEventListener('click', () => {
+                    selectedLocation = loc;
+                    updateSelectedLocationPanel();
+                    renderLocations(filter);
+                });
+                locationsGrid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        function updateSelectedLocationPanel() {
+            document.getElementById('selected-loc-badge').textContent = selectedLocation.badge;
+            document.getElementById('selected-loc-title').textContent = selectedLocation.name;
+            document.getElementById('selected-loc-desc').textContent = selectedLocation.desc;
+            document.getElementById('selected-loc-directions').textContent = selectedLocation.directions;
+        }
+
+        document.getElementById('ask-about-loc-btn').addEventListener('click', () => {
+            askQuickQuestion(`أخبرني المزيد عن ${selectedLocation.name} وكيف أستفيد منه كطالب جديد؟`);
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-charcoal-900', 'text-cream-50');
+                    b.classList.add('bg-cream-100', 'text-charcoal-900');
+                });
+                btn.classList.remove('bg-cream-100', 'text-charcoal-900');
+                btn.classList.add('bg-charcoal-900', 'text-cream-50');
+                renderLocations(btn.dataset.filter);
+            });
+        });
+
+        renderLocations('all');
+
+        // 3. توليد رمز QRCode التفاعلي الحقيقي
+        const currentUrl = window.location.href.startsWith('http')
+            ? window.location.href
+            : 'https://squ.edu.om/sultan-journey';
+        
+        const qrUrlInput = document.getElementById('qr-url-input');
+        qrUrlInput.value = currentUrl;
+
+        const qrContainer = document.getElementById('qrcode-container');
+        const qrCodeInstance = new QRCode(qrContainer, {
+            text: currentUrl,
+            width: 170,
+            height: 170,
+            colorDark: "#1A1A1A",
+            colorLight: "#FFFFFF",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-box');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        function copySiteLink() {
+            qrUrlInput.select();
+            qrUrlInput.setSelectionRange(0, 99999);
+            try {
+                document.execCommand('copy');
+                showToast('تم نسخ رابط موقع "رحلة السلطان" بنجاح!');
+            } catch (err) {
+                showToast('تم تحديد الرابط للنسخ.');
+            }
+        }
+
+        function downloadQRCode() {
+            const canvas = qrContainer.querySelector('canvas');
+            const img = qrContainer.querySelector('img');
+            let dataUrl = '';
+
+            if (canvas) {
+                dataUrl = canvas.toDataURL('image/png');
+            } else if (img && img.src) {
+                dataUrl = img.src;
+            }
+
+            if (dataUrl) {
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = 'Rehlat-AlSultan-SQU-QR.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast('جاري تحميل صورة رمز QR...');
+            }
+        }
+
+        // 4. المساعد الذكي التفاعلي (Gemini API Integration)
+        const chatMessages = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatSubmitBtn = document.getElementById('chat-submit-btn');
+
+        const systemInstructionText = `أنت "مرشد السلطان الذكي"، مساعد أكاديمي وطلابي ودود وخبير مخصص للطلبة الجدد في جامعة سلطان قابوس (SQU) بسلطنة عُمان، ضمن منصة "رحلة السلطان".
+أجب دائماً باللغة العربية الفصحى الواضحة والودودة والمختصرة والمنظمة (باستخدام نقاط عند الحاجة).
+قاعدة معرفتك الأساسية تشمل:
+1. مركز الدراسات التحضيرية (PSC): يضم برنامج اللغة الإنجليزية (6 مستويات من FPEL 0100 إلى FPEL 0600 حسب اختبار تحديد المستوى)، ومقررات الرياضيات وتقنية المعلومات ومهارات الدراسة الجامعية. يمكن الإعفاء باجتياز اختبارات تحديد المستوى أو تقديم شهادة IELTS بدرجة 5.5 أو أعلى (حسب لوائح القبول).
+2. بوابة القبول والتسجيل (SIS): نظام معلومات الطالب لإدارة الجدول الدراسي، الحذف والإضافة في الأسبوع الأول، متابعة المعدل التراكمي، ومعرفة المرشد الأكاديمي.
+3. التعليم الإلكتروني (Moodle / E-Learning): المنصة الرسمية للمحاضرات، تسليم الواجبات، والاختبارات القصيرة.
+4. السكن والتغذية: توفر الجامعة سكنات داخلية متكاملة للطالبات المستحقات (حسب المسافة)، وتصرف علاوة معيشة شهرية للطلاب المستحقين، وتتوفر مطاعم وكافتيريات في المجمعات الطلابية والكليات.
+5. المرافق والخدمات: برج الساعة في قلب الحرم، المكتبة الرئيسية للمراجع وقاعات الدراسة، مركز خدمات الطلبة لإصدار البطاقة الجامعية، عيادة الطلبة ومستشفى جامعة سلطان قابوس للرعاية الصحية، وعمادة شؤون الطلبة التي تشرف على الجماعات الطلابية.
+إذا سأل الطالب عن شيء خارج إطار الجامعة، أرشده بلطف للتركيز على استفساراته الجامعية أو قدم نصيحة دراسية مفيدة.`;
+
+        let conversationHistory = [];
+
+        function scrollToAdvisor() {
+            document.getElementById('ai-advisor').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => chatInput.focus(), 500);
+        }
+
+        function appendMessage(role, text) {
+            const wrapper = document.createElement('div');
+            wrapper.className = role === 'user' ? 'flex items-start justify-end gap-2.5' : 'flex items-start gap-2.5';
+
+            // تنسيق بسيط للنص (تحويل **نص** إلى عريض والأسطر الجديدة)
+            const formattedText = text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+
+            if (role === 'user') {
+                wrapper.innerHTML = `
+                    <div class="bg-charcoal-900 text-cream-50 rounded-2xl rounded-tl-none p-3.5 text-sm leading-relaxed max-w-[85%]">
+                        ${formattedText}
+                    </div>
+                `;
+            } else {
+                wrapper.innerHTML = `
+                    <div class="w-8 h-8 rounded-xl bg-charcoal-900 text-squgold-400 flex items-center justify-center shrink-0 mt-0.5">
+                        <i data-lucide="bot" class="w-4 h-4"></i>
+                    </div>
+                    <div class="bg-cream-50 border-2 border-charcoal-900 rounded-2xl rounded-tr-none p-3.5 text-sm text-charcoal-900 leading-relaxed max-w-[85%]">
+                        ${formattedText}
+                    </div>
+                `;
+            }
+
+            chatMessages.appendChild(wrapper);
+            lucide.createIcons();
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const indicator = document.createElement('div');
+            indicator.id = 'typing-indicator';
+            indicator.className = 'flex items-start gap-2.5';
+            indicator.innerHTML = `
+                <div class="w-8 h-8 rounded-xl bg-charcoal-900 text-squgold-400 flex items-center justify-center shrink-0">
+                    <i data-lucide="bot" class="w-4 h-4"></i>
+                </div>
+                <div class="bg-cream-50 border-2 border-charcoal-900 rounded-2xl rounded-tr-none px-4 py-3 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-charcoal-900 typing-dot"></span>
+                    <span class="w-2 h-2 rounded-full bg-squgold-500 typing-dot"></span>
+                    <span class="w-2 h-2 rounded-full bg-charcoal-900 typing-dot"></span>
+                </div>
+            `;
+            chatMessages.appendChild(indicator);
+            lucide.createIcons();
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) indicator.remove();
+        }
+
+        // رد احتياطي محلي ذكي في حال انقطاع الاتصال بالشبكة
+        function getFallbackResponse(query) {
+            const q = query.toLowerCase();
+            if (q.includes('تحضيرية') || q.includes('إنجليزي') || q.includes('psc')) {
+                return 'يتكون **مركز الدراسات التحضيرية (PSC)** من برنامج اللغة الإنجليزية (6 مستويات من FPEL 0100 إلى 0600)، بالإضافة إلى مقررات **الرياضيات** و**تقنية المعلومات** و**مهارات الدراسة الجامعية**. يتم تحديد مستواك عبر اختبار تحديد المستوى في أسبوع التهيئة.';
+            }
+            if (q.includes('sis') || q.includes('تسجيل') || q.includes('مواد')) {
+                return 'لتسجيل موادك عبر **بوابة الطالب (SIS)**:\n1. سجل الدخول برقمك الجامعي وكلمة المرور.\n2. اختر قائمة "التسجيل" ثم "الحذف والإضافة".\n3. أدخل رموز المقررات المعتمدة في خطتك الدراسية بالتنسيق مع مرشدك الأكاديمي.';
+            }
+            if (q.includes('خدمات') || q.includes('موقع') || q.includes('أين')) {
+                return 'يقع **مركز خدمات الطلبة** بالقرب من الممر الأكاديمي الرئيسي والمسجد الجامعي، وهناك يمكنك إصدار بطاقتك الجامعية ومراجعة عمادة القبول والتسجيل وعمادة شؤون الطلبة.';
+            }
+            if (q.includes('سكن') || q.includes('علاوة') || q.includes('مطعم')) {
+                return 'توفر الجامعة **مجمعات سكنية داخلية** للطالبات المستحقات حسب بُعد المنطقة السكنية، بينما يُصرف للطلاب المستحقين **علاوة معيشة شهرية**، مع توفر مطاعم وكافتيريات في كافة الكليات.';
+            }
+            return 'أهلاً بك في جامعة سلطان قابوس! يمكنك استكشاف أقسام الموقع أعلاه للتعرف على **مركز الدراسات التحضيرية**، **خدمات القبول والتسجيل (SIS)**، **المكتبة الرئيسية**، و**خريطة الحرم الجامعي**. اسألني عن أي خدمة محددة وسأساعدك فوراً!';
+        }
+
+        async function fetchGeminiResponse(userQuery) {
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            conversationHistory.push({
+                role: 'user',
+                parts: [{ text: userQuery }]
+            });
+
+            const payload = {
+                contents: conversationHistory,
+                systemInstruction: {
+                    parts: [{ text: systemInstructionText }]
+                }
+            };
+
+            const delays = [1000, 2000, 4000];
+            for (let attempt = 0; attempt <= delays.length; attempt++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('API request failed');
+                    }
+
+                    const result = await response.json();
+                    const replyText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                    if (replyText) {
+                        conversationHistory.push({
+                            role: 'model',
+                            parts: [{ text: replyText }]
+                        });
+                        return replyText;
+                    }
+                    throw new Error('Empty response');
+                } catch (error) {
+                    if (attempt < delays.length) {
+                        await new Promise(resolve => setTimeout(resolve, delays[attempt]));
+                    } else {
+                        return getFallbackResponse(userQuery);
+                    }
+                }
+            }
+        }
+
+        async function handleUserMessage(text) {
+            const trimmed = text.trim();
+            if (!trimmed) return;
+
+            appendMessage('user', trimmed);
+            chatInput.value = '';
+            chatSubmitBtn.disabled = true;
+            showTypingIndicator();
+
+            const reply = await fetchGeminiResponse(trimmed);
+            removeTypingIndicator();
+            appendMessage('model', reply);
+            chatSubmitBtn.disabled = false;
+            chatInput.focus();
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            handleUserMessage(chatInput.value);
+        });
+
+        function askQuickQuestion(question) {
+            scrollToAdvisor();
+            handleUserMessage(question);
+        }
+
+        function clearChat() {
+            conversationHistory = [];
+            chatMessages.innerHTML = `
+                <div class="flex items-start gap-2.5">
+                    <div class="w-8 h-8 rounded-xl bg-charcoal-900 text-squgold-400 flex items-center justify-center shrink-0 mt-0.5">
+                        <i data-lucide="bot" class="w-4 h-4"></i>
+                    </div>
+                    <div class="bg-cream-50 border-2 border-charcoal-900 rounded-2xl rounded-tr-none p-3.5 text-sm text-charcoal-900 leading-relaxed max-w-[85%]">
+                        تم بدء محادثة جديدة! كيف يمكنني مساعدتك في <strong>جامعة سلطان قابوس</strong>؟
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
